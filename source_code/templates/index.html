@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Project CSE 564</title>
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script>
+            d3version4 = d3
+            window.d3 = null
+        </script>
+        <script src="https://d3js.org/d3.v3.min.js"></script>
+        <script>
+            d3version3 = d3
+            window.d3 = null
+        </script>
+        <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+        <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+        <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.13.0/d3-legend.js"></script>
+
+        
+        <script src="//d3js.org/d3.v4.min.js"></script>
+        <script src="//d3js.org/queue.v1.min.js"></script>
+        <script src="//d3js.org/topojson.v1.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.0/d3-tip.js"></script>
+    
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+        <script src="https://d3js.org/colorbrewer.v1.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+        <script type="text/javascript" src="static/js/main.js"></script>
+        <script type="text/javascript" src="static/js/visualize_map.js"></script>
+        <script type="text/javascript" src="static/js/visualize_scatter.js"></script>
+        <script type="text/javascript" src="static/js/visualize_line.js"></script>
+        <script type="text/javascript" src="static/js/visualize_pcp.js"></script>
+        <script type="text/javascript" src="static/js/visualize_bar.js"></script>
+        <link rel="stylesheet" href="static/css/style.css"></link>
+        <link rel="shortcut icon" href="#">
+        
+    
+
+    </head>
+<!--rgba(40, 101, 231, 0.986)-->
+    <body id="body-pd", style="background-color:  black "> 
+        <div class="navbar-nav navbar-inverse navbar-fixed-top">
+            <div class="container">
+                
+                
+                <div id="dashboardHeader">
+                   <h3 style="font-weight: bold; text-align: center; color: white;"> 
+                        Suicide Rates Analysis Across The Globe During The Period 1990-2017
+                        <input id="reset" type="button" value="Reset Dashboard" style="font-size: 14px; font-weight: bold; float : right;" onclick="displayDashboard('reset');" />
+                    </h3>
+                </div>
+                
+            </div>
+        </div>
+        <div id='main' class="container-fluid" >
+            <div class="row">
+                <div class="col-sm-5" style="padding-left: 30px;padding-right:20px;">      
+                    <div class="row" style="background-color:  #919191b4; outline-style:double; display:inline-block; position: relative">
+                        <div id="worldmap" class="col">
+                            <dtitle id="titleChoropleth" style="text-align:center; font-size: 18px; color: white; font-weight:bold;display:block; position: relative;">Average Deaths Due To Suicide in the World (1990-2017)</dtitle>
+                            <hr> 
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-7" style="padding-left: 140px;padding-right: 20px">
+                    <div class="row"  style="background-color:  #919191b4;outline-style:double; padding-right: 5px;  display:inline-block; position: relative">
+                        <div id="PCP-legend" class="col"></div>
+
+                        <div id="PCP" class="col">
+                            
+                            <dtitle id="titlePCP" style="text-align:center;font-size: 18px; color:white; font-weight:bold; display:block; position: relative;">Potential Factors Causing Suicide Deaths in the World (1990-2017) </dtitle>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-4" style="padding-left: 30px;padding-right: 20px">
+                    <div class="row" style="background-color:  #919191b4;outline-style:double ;outline-style:double; display:inline-block; position: relative">
+                        <div id="bar" class="col">
+                            <dtitle id="titleStats" style=" text-align:center; font-size: 18px; color: white; font-weight:bold; display:block; position: relative;">Suicide Death Rates in the World by Age Group (1990-2017)</dtitle>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+               
+                
+                <div class="col-sm-4" style="padding-left: 65px;">
+                    <div class="row" style="background-color:  #919191b4;outline-style:double ;outline-style:double; display:inline-block; position: relative">
+                        <div id="scatterPlot" class="col">
+                            <dtitle id="titleScatter" style="text-align:center; font-size: 18px;color: white; font-weight:bold; display:block; position: relative;">Scatter Plot for Male Vs Female Suicide Rate Comparison</dtitle>
+                            <hr>
+                        </div>
+                    </div>
+                   
+                </div>
+                <div class="col-sm-4" style="padding-left: 1px;padding-right: 1px">
+                    <div class="row" style="background-color:  #919191b4;outline-style:double; display:inline-block; position: relative">
+                        <div id="linePlot" class="col">
+                            <dtitle id="titleLine" style="text-align:center;font-size: 18px; color: white; font-weight:bold; display:block; position: relative;">Male-Female Suicide Rate Over the Years (1990-2017)</dtitle>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          </div>
+    
+    </body>
+</html>
