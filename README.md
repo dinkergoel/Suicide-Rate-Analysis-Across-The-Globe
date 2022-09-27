@@ -17,6 +17,8 @@ The primary goal of this dashboard is to analyze patterns for suicide rates base
     • Choropleth Map (Suicide Prevalence By Geographic location)
     • Parallel Coordinates Plot (Potential Factors Causing Suicides)
 
+[Poster Slide- Suicide Rate Analysis Across The Globe From 1990.pdf](https://github.com/dinkergoel/Suicide-Rate-Analysis-Across-The-Globe/files/9658525/Poster.Slide-.Suicide.Rate.Analysis.Across.The.Globe.From.1990.pdf)
+
 
 **Analytics and Inferences**
 
